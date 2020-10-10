@@ -1,0 +1,30 @@
+server:
+  port: 8763  # 表示的当前这个微服务的端口
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://user:123456@localhost:8761/eureka/ # Eureka Server地址 表示将当前的微服务注册到哪个Eureka Server注册中心
+  instance:
+    prefer-ip-address: true # 表示将ip地址注册到Eureka Server
+
+spring:
+  application:
+    name: eureka-microservice-article # 当前应用的名称.用于注册到Eureka Server 以后的服务与服务之间相互调用一般都是根据这个name
+  thymeleaf:
+    cache: false
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://127.0.0.1:3306/gannan17?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl # 物理命名策略
+feign:
+  hystrix:
+    enabled: true
+hystrix:
+  dashboard:
+    proxy-stream-allow-list: localhost
